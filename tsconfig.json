@@ -27,8 +27,7 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "strict": false,
-    "noImplicitAny": false,
-    "ignoreDeprecations": "6.0"
+    "noImplicitAny": false
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": false,
