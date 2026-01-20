@@ -22,8 +22,10 @@ const routes: Routes = [
   }
 ];
 
+export const cmsRouting = RouterModule.forChild(routes);
+
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [cmsRouting],
   exports: [RouterModule]
 })
 export class CmsRoutingModule {}

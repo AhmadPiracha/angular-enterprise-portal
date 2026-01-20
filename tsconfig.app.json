@@ -6,6 +6,11 @@
     "strict": false,
     "forceConsistentCasingInFileNames": true
   },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": false,
+    "strictInjectionParameters": false,
+    "enableIvy": false
+  },
   "files": [
     "src/main.ts",
     "src/polyfills.ts"

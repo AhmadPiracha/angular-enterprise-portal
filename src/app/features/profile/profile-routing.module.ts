@@ -6,8 +6,10 @@ const routes: Routes = [
   { path: '', component: ProfileComponent }
 ];
 
+export const profileRouting = RouterModule.forChild(routes);
+
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [profileRouting],
   exports: [RouterModule]
 })
 export class ProfileRoutingModule { }

@@ -12,8 +12,10 @@ const routes: Routes = [
   }
 ];
 
+export const dashboardRouting = RouterModule.forChild(routes);
+
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [dashboardRouting],
   exports: [RouterModule]
 })
 export class DashboardRoutingModule {}

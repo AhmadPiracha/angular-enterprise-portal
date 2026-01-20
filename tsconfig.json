@@ -34,8 +34,6 @@
     "strictInjectionParameters": false,
     "strictTemplates": false,
     "enableIvy": false,
-    "disableTypeScriptVersionCheck": true,
-    "skipTemplateCodegen": true,
-    "disableExpressionLowering": true
+    "disableTypeScriptVersionCheck": true
   }
 }
