@@ -1,18 +1,9 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist/enterprise-portal"
-      }
-    }
-  ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/dist/enterprise-portal/index.html"
     }
   ]
 }
