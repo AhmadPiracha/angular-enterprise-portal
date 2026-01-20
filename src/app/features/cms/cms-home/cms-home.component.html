@@ -1,0 +1,85 @@
+<div class="cms-home">
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1>📚 Knowledge Base</h1>
+      <p class="hero-subtitle">Everything you need to know about our Enterprise Portal</p>
+    </div>
+  </div>
+
+  <div class="search-section">
+    <div class="search-box">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" placeholder="Search documentation..." />
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h2 class="section-title">Featured Resources</h2>
+    
+    <div class="featured-grid">
+      <a *ngFor="let page of featuredPages" 
+         [routerLink]="['/pages', page.slug]" 
+         class="featured-card">
+        <div class="card-icon">{{ page.icon }}</div>
+        <div class="card-content">
+          <span class="card-category">{{ page.category }}</span>
+          <h3>{{ page.title }}</h3>
+          <p>{{ page.description }}</p>
+        </div>
+        <div class="card-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+
+    <div *ngIf="pages.length > 0" class="additional-pages">
+      <h2 class="section-title">More Resources</h2>
+      <div class="pages-list">
+        <a *ngFor="let page of pages" 
+           [routerLink]="['/pages', page.fields.slug]" 
+           class="page-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+          {{ page.fields.title }}
+        </a>
+      </div>
+    </div>
+
+    <div class="quick-links">
+      <h2 class="section-title">Quick Links</h2>
+      <div class="quick-links-grid">
+        <div class="quick-link-card">
+          <div class="quick-link-icon">🚀</div>
+          <h4>Getting Started</h4>
+          <p>New to the platform? Start here</p>
+          <a routerLink="/pages/help" class="link-arrow">Learn more →</a>
+        </div>
+        <div class="quick-link-card">
+          <div class="quick-link-icon">💬</div>
+          <h4>Support</h4>
+          <p>Need help? Contact our team</p>
+          <a href="mailto:support@enterprise-portal.com" class="link-arrow">Get in touch →</a>
+        </div>
+        <div class="quick-link-card">
+          <div class="quick-link-icon">📊</div>
+          <h4>Dashboard</h4>
+          <p>View your analytics and metrics</p>
+          <a routerLink="/dashboard" class="link-arrow">Go to dashboard →</a>
+        </div>
+        <div class="quick-link-card">
+          <div class="quick-link-icon">🎓</div>
+          <h4>Training</h4>
+          <p>Video tutorials and guides</p>
+          <a href="#" class="link-arrow">Watch videos →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

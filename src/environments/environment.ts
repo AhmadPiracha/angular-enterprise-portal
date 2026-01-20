@@ -3,7 +3,22 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'https://api-dev.company.com',
+  apimUrl: 'https://apim-dev.azure-api.net',
+  frontDoorUrl: 'https://dev.company.com',
+  contentful: {
+    spaceId: 'YOUR_CONTENTFUL_SPACE_ID',
+    accessToken: 'YOUR_CONTENTFUL_ACCESS_TOKEN',
+    environment: 'master'
+  },
+  appInsights: {
+    instrumentationKey: 'YOUR_APP_INSIGHTS_KEY'
+  },
+  features: {
+    enableAnalytics: true,
+    enableChatbot: false
+  }
 };
 
 /*
