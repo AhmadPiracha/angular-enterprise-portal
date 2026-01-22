@@ -1,0 +1,111 @@
+<div class="example-features">
+  <h1>Architecture Enhancements Demo</h1>
+
+  <!-- NgRx Store State Display -->
+  <section class="feature-section">
+    <h2>1. NgRx State Management</h2>
+    <div class="state-display">
+      <p><strong>Current User:</strong> {{ (user$ | async)?.name || 'No user' }}</p>
+      <p><strong>Auth Loading:</strong> {{ (authLoading$ | async) ? 'Yes' : 'No' }}</p>
+      <p><strong>UI Loading:</strong> {{ (loading$ | async) ? 'Yes' : 'No' }}</p>
+    </div>
+  </section>
+
+  <!-- Notification System -->
+  <section class="feature-section">
+    <h2>2. Notification System</h2>
+    <div class="button-group">
+      <button (click)="showSuccessNotification()" class="btn btn-success">Success</button>
+      <button (click)="showErrorNotification()" class="btn btn-error">Error</button>
+      <button (click)="showWarningNotification()" class="btn btn-warning">Warning</button>
+      <button (click)="showInfoNotification()" class="btn btn-info">Info</button>
+    </div>
+  </section>
+
+  <!-- Loading Spinners -->
+  <section class="feature-section">
+    <h2>3. Loading Spinners</h2>
+    <div class="button-group">
+      <button (click)="toggleInlineSpinner()" class="btn btn-primary">Toggle Inline</button>
+      <button (click)="toggleOverlaySpinner()" class="btn btn-primary">Toggle Overlay</button>
+      <button (click)="simulateAsyncOperation()" class="btn btn-primary">Simulate Async (3s)</button>
+    </div>
+
+    <div *ngIf="showInlineSpinner" class="spinner-demo">
+      <app-loading-spinner message="Loading content..." size="medium"></app-loading-spinner>
+    </div>
+
+    <app-loading-spinner 
+      *ngIf="showOverlaySpinner" 
+      [overlay]="true" 
+      message="Processing..."
+      size="large">
+    </app-loading-spinner>
+  </section>
+
+  <!-- Logging Service -->
+  <section class="feature-section">
+    <h2>4. Logging Service</h2>
+    <div class="button-group">
+      <button (click)="logTrace()" class="btn btn-secondary">Trace</button>
+      <button (click)="logDebug()" class="btn btn-secondary">Debug</button>
+      <button (click)="logInfo()" class="btn btn-secondary">Info</button>
+      <button (click)="logWarning()" class="btn btn-secondary">Warning</button>
+      <button (click)="logError()" class="btn btn-secondary">Error</button>
+      <button (click)="trackCustomEvent()" class="btn btn-secondary">Track Event</button>
+      <button (click)="trackMetric()" class="btn btn-secondary">Track Metric</button>
+    </div>
+    <p class="note">Check browser console to see logs</p>
+  </section>
+
+  <!-- Form Validation -->
+  <section class="feature-section">
+    <h2>5. Form Validators & Error Messages</h2>
+    <form [formGroup]="exampleForm" (ngSubmit)="onSubmit()" class="example-form">
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input id="email" formControlName="email" type="email" class="form-control">
+        <app-form-error [control]="exampleForm.get('email')" fieldName="Email"></app-form-error>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password * (must be strong)</label>
+        <input id="password" formControlName="password" type="password" class="form-control">
+        <app-form-error [control]="exampleForm.get('password')" fieldName="Password"></app-form-error>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone (US format)</label>
+        <input id="phone" formControlName="phone" type="tel" class="form-control" placeholder="123-456-7890">
+        <app-form-error [control]="exampleForm.get('phone')" fieldName="Phone"></app-form-error>
+      </div>
+
+      <div class="form-group">
+        <label for="website">Website</label>
+        <input id="website" formControlName="website" type="url" class="form-control" placeholder="https://example.com">
+        <app-form-error [control]="exampleForm.get('website')" fieldName="Website"></app-form-error>
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age * (18-120)</label>
+        <input id="age" formControlName="age" type="number" class="form-control">
+        <app-form-error [control]="exampleForm.get('age')" fieldName="Age"></app-form-error>
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username * (no spaces)</label>
+        <input id="username" formControlName="username" type="text" class="form-control">
+        <app-form-error [control]="exampleForm.get('username')" fieldName="Username"></app-form-error>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="exampleForm.invalid">
+        Submit Form
+      </button>
+    </form>
+  </section>
+
+  <section class="feature-section">
+    <h2>Documentation</h2>
+    <p>For detailed usage instructions, see <strong>ARCHITECTURE_ENHANCEMENTS.md</strong></p>
+  </section>
+</div>

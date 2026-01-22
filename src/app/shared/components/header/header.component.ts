@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService, User } from 'src/app/core/services/auth.service';
+import { AuthService, User } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
 
   user: User | null = null;
   showUserMenu = false;
+  showMobileMenu = false;
 
   constructor(
     private authService: AuthService,
@@ -23,6 +24,14 @@ export class HeaderComponent implements OnInit {
 
   toggleUserMenu() {
     this.showUserMenu = !this.showUserMenu;
+  }
+
+  toggleMobileMenu() {
+    this.showMobileMenu = !this.showMobileMenu;
+  }
+
+  closeMobileMenu() {
+    this.showMobileMenu = false;
   }
 
   @HostListener('document:click', ['$event'])

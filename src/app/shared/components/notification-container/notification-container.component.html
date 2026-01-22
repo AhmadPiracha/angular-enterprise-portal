@@ -1,0 +1,7 @@
+<div class="notification-container">
+  <app-error-notification
+    *ngFor="let notification of notifications"
+    [notification]="notification"
+    (close)="onClose($event)">
+  </app-error-notification>
+</div>

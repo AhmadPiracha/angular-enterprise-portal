@@ -20,6 +20,27 @@
 .header-left {
   display: flex;
   align-items: center;
+  gap: 1rem;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #6b7280;
+  border-radius: 6px;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #f3f4f6;
+    color: #111827;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 .logo {
@@ -257,13 +278,96 @@
 @media (max-width: 768px) {
   .header-container {
     padding: 0 1rem;
+    height: auto;
+    min-height: 64px;
+    flex-wrap: wrap;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .logo {
+    .logo-text {
+      font-size: 1rem;
+    }
   }
 
   .header-nav {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+    &.mobile-open {
+      display: flex;
+    }
+
+    .nav-link {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      justify-content: flex-start;
+    }
+  }
+
+  .header-right {
+    gap: 0.5rem;
   }
 
   .user-name {
     display: none;
+  }
+
+  .user-btn {
+    padding: 0.25rem;
+  }
+
+  .icon-btn {
+    padding: 0.375rem;
+  }
+
+  .dropdown-menu {
+    right: 0;
+    left: auto;
+    width: 90vw;
+    max-width: 280px;
+    margin-right: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    padding: 0 0.75rem;
+  }
+
+  .logo {
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .logo-text {
+      font-size: 0.9375rem;
+    }
+  }
+
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8125rem;
+  }
+
+  .icon-btn {
+    .badge {
+      font-size: 0.625rem;
+      padding: 0.0625rem 0.3125rem;
+    }
   }
 }

@@ -1,0 +1,275 @@
+<div class="settings-container">
+  <div class="settings-header">
+    <h1>Settings</h1>
+    <p>Manage your account settings and preferences</p>
+  </div>
+
+  <div class="settings-content">
+    <!-- Tabs Navigation -->
+    <div class="settings-tabs">
+      <button 
+        class="tab-btn" 
+        [class.active]="activeTab === 'profile'"
+        (click)="setActiveTab('profile')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span>Profile</span>
+      </button>
+      
+      <button 
+        class="tab-btn" 
+        [class.active]="activeTab === 'security'"
+        (click)="setActiveTab('security')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        <span>Security</span>
+      </button>
+      
+      <button 
+        class="tab-btn" 
+        [class.active]="activeTab === 'notifications'"
+        (click)="setActiveTab('notifications')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+        </svg>
+        <span>Notifications</span>
+      </button>
+      
+      <button 
+        class="tab-btn" 
+        [class.active]="activeTab === 'preferences'"
+        (click)="setActiveTab('preferences')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/>
+        </svg>
+        <span>Preferences</span>
+      </button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="settings-panel">
+      <!-- Profile Tab -->
+      <div class="tab-content" *ngIf="activeTab === 'profile'">
+        <div class="panel-header">
+          <h2>Profile Information</h2>
+          <p>Update your account profile information and email address</p>
+        </div>
+
+        <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input 
+              type="text" 
+              id="name" 
+              formControlName="name"
+              class="form-control"
+              placeholder="Enter your full name">
+            <div class="error-message" *ngIf="profileForm.get('name').touched && profileForm.get('name').errors?.required">
+              Name is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input 
+              type="email" 
+              id="email" 
+              formControlName="email"
+              class="form-control"
+              placeholder="Enter your email">
+            <div class="error-message" *ngIf="profileForm.get('email').touched && profileForm.get('email').errors?.required">
+              Email is required
+            </div>
+            <div class="error-message" *ngIf="profileForm.get('email').touched && profileForm.get('email').errors?.email">
+              Please enter a valid email
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input 
+              type="tel" 
+              id="phone" 
+              formControlName="phone"
+              class="form-control"
+              placeholder="Enter your phone number">
+          </div>
+
+          <div class="form-group">
+            <label for="bio">Bio</label>
+            <textarea 
+              id="bio" 
+              formControlName="bio"
+              class="form-control"
+              rows="4"
+              placeholder="Tell us about yourself"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Security Tab -->
+      <div class="tab-content" *ngIf="activeTab === 'security'">
+        <div class="panel-header">
+          <h2>Security Settings</h2>
+          <p>Manage your password and account security</p>
+        </div>
+
+        <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+          <div class="form-group">
+            <label for="currentPassword">Current Password</label>
+            <input 
+              type="password" 
+              id="currentPassword" 
+              formControlName="currentPassword"
+              class="form-control"
+              placeholder="Enter current password">
+          </div>
+
+          <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <input 
+              type="password" 
+              id="newPassword" 
+              formControlName="newPassword"
+              class="form-control"
+              placeholder="Enter new password">
+            <small class="form-hint">Password must be at least 8 characters long</small>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm New Password</label>
+            <input 
+              type="password" 
+              id="confirmPassword" 
+              formControlName="confirmPassword"
+              class="form-control"
+              placeholder="Confirm new password">
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Change Password</button>
+          </div>
+        </form>
+
+        <div class="danger-zone">
+          <h3>Danger Zone</h3>
+          <p>Once you delete your account, there is no going back. Please be certain.</p>
+          <button class="btn btn-danger" (click)="deleteAccount()">Delete Account</button>
+        </div>
+      </div>
+
+      <!-- Notifications Tab -->
+      <div class="tab-content" *ngIf="activeTab === 'notifications'">
+        <div class="panel-header">
+          <h2>Notification Preferences</h2>
+          <p>Manage how you receive notifications</p>
+        </div>
+
+        <div class="settings-section">
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Email Notifications</h4>
+              <p>Receive email notifications for important updates</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" [(ngModel)]="notificationSettings.emailNotifications">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Push Notifications</h4>
+              <p>Receive push notifications in your browser</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" [(ngModel)]="notificationSettings.pushNotifications">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Weekly Report</h4>
+              <p>Get a weekly summary of your activity</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" [(ngModel)]="notificationSettings.weeklyReport">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Product Updates</h4>
+              <p>Receive news about new features and updates</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" [(ngModel)]="notificationSettings.productUpdates">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" (click)="saveNotificationSettings()">Save Preferences</button>
+        </div>
+      </div>
+
+      <!-- Preferences Tab -->
+      <div class="tab-content" *ngIf="activeTab === 'preferences'">
+        <div class="panel-header">
+          <h2>Application Preferences</h2>
+          <p>Customize your application experience</p>
+        </div>
+
+        <div class="form-group">
+          <label for="theme">Theme</label>
+          <select id="theme" [(ngModel)]="preferences.theme" class="form-control">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="auto">Auto</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="language">Language</label>
+          <select id="language" [(ngModel)]="preferences.language" class="form-control">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="timezone">Timezone</label>
+          <select id="timezone" [(ngModel)]="preferences.timezone" class="form-control">
+            <option value="UTC">UTC</option>
+            <option value="America/New_York">Eastern Time</option>
+            <option value="America/Chicago">Central Time</option>
+            <option value="America/Denver">Mountain Time</option>
+            <option value="America/Los_Angeles">Pacific Time</option>
+            <option value="Europe/London">London</option>
+            <option value="Europe/Paris">Paris</option>
+            <option value="Asia/Tokyo">Tokyo</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" (click)="savePreferences()">Save Preferences</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

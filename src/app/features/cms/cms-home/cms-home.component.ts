@@ -11,9 +11,9 @@ export class CmsHomeComponent implements OnInit {
   pages: any[] = [];
   featuredPages = [
     {
-      title: 'About Us',
-      slug: 'about-us',
-      description: 'Learn about our platform, mission, and the technology that powers your enterprise portal.',
+      title: 'Privacy Policy',
+      slug: 'privacy',
+      description: 'Learn about how we handle your data and protect your privacy on our platform.',
       icon: '🏢',
       category: 'Company'
     },

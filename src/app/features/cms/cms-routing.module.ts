@@ -7,18 +7,27 @@ import { AuthGuard } from '../../core/guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    component: CmsHomeComponent,
-    canActivate: [AuthGuard]
+    component: CmsHomeComponent
   },
   {
     path: 'home',
-    component: CmsHomeComponent,
-    canActivate: [AuthGuard]
+    component: CmsHomeComponent
+  },
+  {
+    path: 'privacy',
+    component: CmsPageComponent
+  },
+  {
+    path: 'terms',
+    component: CmsPageComponent
+  },
+  {
+    path: 'help',
+    component: CmsPageComponent
   },
   {
     path: ':slug',
-    component: CmsPageComponent,
-    canActivate: [AuthGuard]
+    component: CmsPageComponent
   }
 ];
 

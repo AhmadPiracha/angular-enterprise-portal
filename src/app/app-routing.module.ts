@@ -26,8 +26,27 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'settings',
+    loadChildren: () =>
+      import('./features/settings/settings.module').then(
+        m => m.SettingsModule
+      ),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'login',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  },
+  {
     path: 'unauthorized',
     component: UnauthorizedComponent
+  },
+  {
+    path: 'cms',
+    loadChildren: () =>
+      import('./features/cms/cms.module').then(m => m.CmsModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'pages',
@@ -40,10 +59,8 @@ const routes: Routes = [
   }
 ]
 
-export const appRouting = RouterModule.forRoot(routes);
-
 @NgModule({
-  imports: [appRouting],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

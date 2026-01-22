@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ContentfulService } from 'src/app/core/services/contentful.service';
+import { ContentfulService } from '../../../core/services/contentful.service';
 
 @Component({
   selector: 'app-cms-page',
